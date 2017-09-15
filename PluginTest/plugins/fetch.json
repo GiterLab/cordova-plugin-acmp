@@ -1,0 +1,21 @@
+{
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.duoxieyun.pshplugin": {
+        "source": {
+            "type": "local",
+            "path": "/Users/wangxianjin/Desktop/cordova-plugin-acmp"
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_KEY": "24620146",
+            "APP_SECRET": "56f18904c059eef28111fa006df05a1f"
+        }
+    }
+}

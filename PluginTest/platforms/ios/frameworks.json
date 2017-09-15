@@ -1,0 +1,8 @@
+{
+    "libz.tbd": 1,
+    "libresolv.tbd": 1,
+    "CoreTelephony.framework": 1,
+    "SystemConfiguration.framework": 1,
+    "UserNotifications.framework": 1,
+    "libsqlite3.tbd": 1
+}

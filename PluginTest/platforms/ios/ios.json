@@ -1,0 +1,61 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"PushIOS\"><param name=\"ios-package\" value=\"InitPlugin\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "*PushConfig.plist": {
+                "parents": {
+                    "AppKey": [
+                        {
+                            "xml": "<string>24620146</string>",
+                            "count": 1
+                        }
+                    ],
+                    "AppSecret": [
+                        {
+                            "xml": "<string>56f18904c059eef28111fa006df05a1f</string>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.duoxieyun.PluginTest"
+        },
+        "com.duoxieyun.pshplugin": {
+            "APP_KEY": "24620146",
+            "APP_SECRET": "56f18904c059eef28111fa006df05a1f",
+            "PACKAGE_NAME": "com.duoxieyun.PluginTest"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "id": "com.duoxieyun.pshplugin.PushPlugin",
+            "file": "plugins/com.duoxieyun.pshplugin/www/PushPlugin.js",
+            "pluginId": "com.duoxieyun.pshplugin",
+            "clobbers": [
+                "cordova.plugins.PushPlugin"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-whitelist": "1.3.2",
+        "com.duoxieyun.pshplugin": "0.0.1"
+    }
+}
