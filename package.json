@@ -1,0 +1,14 @@
+{
+  "name": "PushPlugin",
+  "version": "0.0.1",
+  "description": "",
+  "cordova": {
+    "id": "com.duoxieyun.pshplugin",
+    "platforms": []
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "",
+  "license": "ISC"
+}
