@@ -8,8 +8,15 @@
 
 #import "AppDelegate+Push.h"
 #import <CloudPushSDK/CloudPushSDK.h>
+#import "MainViewController.h"
 
 @implementation AppDelegate (Push)
+
+-(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    self.viewController = [[MainViewController alloc] init];
+    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+    return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
 
 
 -(void)applicationDidEnterBackground:(UIApplication *)application{
@@ -61,7 +68,7 @@
     NSString *Extras = [userInfo valueForKey:@"Extras"]; //服务端中Extras字段，key是自己定义的
     NSLog(@"content = [%@], badge = [%ld], sound = [%@], Extras = [%@]", content, (long)badge, sound, Extras);
     // iOS badge 清0
-    application.applicationIconBadgeNumber = 0;
+    application.applicationIconBadgeNumber += 1;
     // 同步通知角标数到服务端
     // [self syncBadgeNum:0];
     // 通知打开回执上报
