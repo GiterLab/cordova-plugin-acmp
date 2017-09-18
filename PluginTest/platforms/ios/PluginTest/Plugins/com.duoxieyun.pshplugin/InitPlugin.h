@@ -15,6 +15,8 @@ typedef void(^MessageCallBack)(NSString * title,NSString * body);
 
 @property(nonatomic,weak)MessageCallBack messagecallback;
 
+-(void)bindAccountandTagandAlias:(CDVInvokedUrlCommand *)cmd;
+
 -(void)init:(CDVInvokedUrlCommand *)cmd;
 
 @end
