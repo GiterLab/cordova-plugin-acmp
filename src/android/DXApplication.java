@@ -1,7 +1,9 @@
-package com.duoxieyun;
+package org.giterlab;
 
 import android.app.Application;
 import android.content.Context;
+
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 
 /**
  * Created by wxj on 2017/9/11.
@@ -17,7 +19,7 @@ public class DXApplication extends Application {
 
     public void onCreate(){
         super.onCreate();
-//        this.myContext=Application.class;
+        PushServiceFactory.init(this);
         myContext= DXApplication.this;
     }
 }
