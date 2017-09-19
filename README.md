@@ -21,6 +21,7 @@ aliyun acmp for cordova
 
 # 3.js的调用
 ![插件的使用](./lALPACOG84RccsbNBDjNB4A_1920_1080.png_620x10000q90g.jpg)
+<br>
 如上图所示，在项目家在cordova.js的情况先，直接使用cordova.plugins.PushPlugin.androidInit(success,fail)调用
 
 
