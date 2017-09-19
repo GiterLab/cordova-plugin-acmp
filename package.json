@@ -3,12 +3,19 @@
   "version": "0.0.1",
   "description": "",
   "cordova": {
-    "id": "com.duoxieyun.pshplugin",
-    "platforms": []
+    "id": "cordova-plugin-acmp",
+    "platforms": ["android","iOS"]
+  },
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/GiterLab/cordova-plugin-acmp.git"
   },
   "keywords": [
-    "ecosystem:cordova"
+    "ecosystem:cordova",
+    "acmp",
+    "alicloud"
   ],
-  "author": "",
-  "license": "ISC"
+  "author": "giterlab",
+  "license": "ISC",
+  "homepage": "https://github.com/GiterLab/cordova-plugin-acmp"
 }
