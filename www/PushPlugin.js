@@ -14,7 +14,7 @@ exports.androidBand=function(success,error,args){
 
 }
 //exports.iosBand=function(success,error){
-//               exec(success,error,"PushIOS","bindAccountandTagandAlias",["sdfasfas","{\"tag_key\":1,\"tag_value\":[\"adfsaf\",\"fdasdf\"],\"alias\":\"dfsadfsa\"}"]);
+//   exec(success,error,"PushIOS","bindAccountandTagandAlias",["sdfasfas","{\"tag_key\":1,\"tag_value\":[\"adfsaf\",\"fdasdf\"],\"alias\":\"dfsadfsa\"}"]);
 //               
 //}
                

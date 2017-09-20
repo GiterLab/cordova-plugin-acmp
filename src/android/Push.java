@@ -26,12 +26,11 @@ public class Push extends CordovaPlugin{
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         this.mCallbackContext = callbackContext;
         if ("init".equals(action)){
-            init(DXApplication.getContext());
+           // init(DXApplication.getContext());
             callbackContext.success("success");
             return true;
         }else if("bindAccountandTagandAlias".equals(action)){
             CloudPushService cloudPushService=PushServiceFactory.getCloudPushService();
-//            cloudPushService.bindAccount();
             if(args.length()<2){
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR,"invaild arguements"));
                 return false;
@@ -46,8 +45,6 @@ public class Push extends CordovaPlugin{
                 @Override
                 public void onFailed(String s, String s1) {
                     Log.d(TAG, "bindAccount failed"+s+s1);
-                    //callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR,"invaild arguements"));
-                   // return false;
                 }
             });
             TagsAlias tagsAlias=JSONObject.parseObject(args.get(1).toString(),TagsAlias.class);
@@ -67,18 +64,5 @@ public class Push extends CordovaPlugin{
         return false;
     }
 
-    private void init(Context applicationContext){
-        CloudPushService pushService = PushServiceFactory.getCloudPushService();
-        pushService.register(applicationContext, new CommonCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d(TAG, "init cloudchannel success");
-            }
-            @Override
-            public void onFailed(String errorCode, String errorMessage) {
 
-                Log.d(TAG, "init cloudchannel failed -- errorcode:" + errorCode + " -- errorMessage:" + errorMessage);
-            }
-        });
-    }
 }
