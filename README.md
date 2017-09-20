@@ -38,13 +38,14 @@ aliyun acmp for cordova
  args为参数数组，args[0]表示需要绑定的账号信息，args[1]为需要给账号添加的tags（标签）和alias（别名）组合成json各式数据
 例如：**["giterlab","{\"tag_key\":1,\"tag_value\":[\"giter\",\"lab\"],\"alias":\"labgiter\"}"]**
 
-### tag_key 目标类型，1：本设备；2：本设备绑定账号；3：别名
 
-### tag_value 标签（数组输入）
+ tag_key 目标类型，1：本设备；2：本设备绑定账号；3：别名
 
-### alias 别名（仅当tag_key = 3时生效）
+ tag_value 标签（数组输入）
 
-## 其中tag_key,tag_value,alias为json的key，不能更改！！
+ alias 别名（仅当tag_key = 3时生效）
+
+ 其中tag_key,tag_value,alias为json的key，不能更改！！
 
 ## 4.iosBand(success,fail,args)
 
@@ -54,11 +55,11 @@ iOS绑定信息调用接口，同上androidBand
 
 
 ![push-open](./md_images/ios-openpush.png)
-
-### 如上图所示在项目TARGETS中在capabilities中打开Push Notifications
+<br>
+ 如上图所示在项目TARGETS中在capabilities中打开Push Notifications
 
 ![-objc配置](./md_images/ios-objc.png)
 
-
+<br>
 ### 如上图所示在项目Build Setting中，Other Linker Flags加上-ObjC标签
 
