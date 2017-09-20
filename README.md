@@ -49,8 +49,8 @@ iOS绑定信息调用接口，同上androidBand
 
 # 5.iOS部分项目配置
 ![push-open](./md_images/ios-openpush.png)
-###如上图所示在项目TARGETS中在capabilities中打开Push Notifications
+### 如上图所示在项目TARGETS中在capabilities中打开Push Notifications
 
 ![-objc配置](./md_images/ios-objc.png)
 
-###如上图所示在项目Build Setting中，Other Linker Flags加上-ObjC标签
+### 如上图所示在项目Build Setting中，Other Linker Flags加上-ObjC标签
