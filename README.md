@@ -15,7 +15,7 @@ aliyun acmp for cordova
 
 如上图所示，从本地址git clone 项目到本地，也可以直接线上安装
 ### cordova plugin add https://github.com/GiterLab/cordova-plugin-acmp.git --nofetch --variable APP_KEY=*** --variable APP_SECRET=***
-使用cordova add plugin命令把plugin安装到项目中，
+使用cordova add plugin命令把plugin安装到项目中
 ### cordova plugin ls
 使用此命令查看插件装成功与否，如果出现org.giter.pushplugin则表明插件安装成功
 
