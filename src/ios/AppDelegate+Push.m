@@ -10,6 +10,7 @@
 #import <CloudPushSDK/CloudPushSDK.h>
 #import "MainViewController.h"
 #import <UserNotifications/UserNotifications.h>
+#import "InitPlugin.h"
 
 @implementation AppDelegate (Push)
 

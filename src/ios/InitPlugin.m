@@ -25,21 +25,26 @@
         return;
     }
     NSString *accountid=(NSString *)[cmd.arguments objectAtIndex:0];
-    [CloudPushSDK bindAccount:accountid withCallback:^(CloudPushCallbackResult *res) {
-        if (res.success) {
-            CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
-            [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
-        }else{
-            CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
-            [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
-        }
-    }];
+    if([accountid length]>0){
+        [CloudPushSDK bindAccount:accountid withCallback:^(CloudPushCallbackResult *res) {
+            if (res.success) {
+                CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
+                [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+            }else{
+                CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
+                [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+            }
+        }];
+    }
+    
     NSString *jsonstr=(NSString *)[cmd.arguments objectAtIndex:1];
     NSData *jsondata=[jsonstr dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableLeaves error:&error];
     if(!error){
-        NSLog(@"%@", error);
+        CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
+        [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        return;
     }
     NSArray *tags=[dic objectForKey:@"tag_value"];
     [CloudPushSDK bindTag:(int)[dic valueForKey:@"tag_key"] withTags:tags withAlias:(NSString *)[dic valueForKey:@"alias"] withCallback:^(CloudPushCallbackResult *res) {
@@ -55,13 +60,12 @@
 
 
 -(void)init:(CDVInvokedUrlCommand *)cmd{
-    NSLog(@"%@",cmd.callbackId);
     [self initPush];
     [self registerMessageReceive];
     [self listenerOnChannelOpened];
     [CloudPushSDK sendNotificationAck:NULL];
-    CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
-    [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+    //CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
+   // [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
     /*
     NSArray *obj=(NSArray *)[cmd.arguments objectAtIndex:0];
     if(obj !=nil)
