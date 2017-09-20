@@ -11,7 +11,7 @@ aliyun acmp for cordova
 ### cordova安装请参考[cordova安装教程](http://cordova.axuer.com)
 
 # 2.使用步骤
-![插件的安装步骤](./lALPACOG84RcEhnNBDLNAp0_669_1074.png_620x10000q90g.jpg)
+![插件的安装步骤](./md_images/lALPACOG84RcEhnNBDLNAp0_669_1074.png_620x10000q90g.jpg)
 
 如上图所示，从本地址git clone 项目到本地，也可以直接线上安装
 ### cordova plugin add <path> --nofetch --variable APP_KEY=*** --variable APP_SECRET=***
@@ -20,7 +20,7 @@ aliyun acmp for cordova
 使用此命令查看插件装成功与否，如果出现org.giter.pushplugin则表明插件安装成功
 
 # 3.js的调用
-![插件的使用](./lALPACOG84RccsbNBDjNB4A_1920_1080.png_620x10000q90g.jpg)
+![插件的使用](./md_images/lALPACOG84RccsbNBDjNB4A_1920_1080.png_620x10000q90g.jpg)
 <br>
 如上图所示，在项目家在cordova.js的情况先，直接使用cordova.plugins.PushPlugin.androidInit(success,fail)调用
 
@@ -46,3 +46,11 @@ aliyun acmp for cordova
 ## 其中tag_key,tag_value,alias为json的key，不能更改！！
 ## 4.iosBand(success,fail,args)
 iOS绑定信息调用接口，同上androidBand
+
+# 5.iOS部分项目配置
+![push-open](./md_images/ios-openpush.png)
+###如上图所示在项目TARGETS中在capabilities中打开Push Notifications
+
+![-objc配置](./md_images/ios-objc.png)
+
+###如上图所示在项目Build Setting中，Other Linker Flags加上-ObjC标签
