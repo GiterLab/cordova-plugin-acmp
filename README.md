@@ -45,13 +45,20 @@ aliyun acmp for cordova
 ### alias 别名（仅当tag_key = 3时生效）
 
 ## 其中tag_key,tag_value,alias为json的key，不能更改！！
+
 ## 4.iosBand(success,fail,args)
+>>>>>>> 6e6f3052ae918431a1f0456a45dd9a8b09dc73eb
 iOS绑定信息调用接口，同上androidBand
 
 # 5.iOS部分项目配置
+
+
 ![push-open](./md_images/ios-openpush.png)
-###如上图所示在项目TARGETS中在capabilities中打开Push Notifications
+
+### 如上图所示在项目TARGETS中在capabilities中打开Push Notifications
 
 ![-objc配置](./md_images/ios-objc.png)
 
-###如上图所示在项目Build Setting中，Other Linker Flags加上-ObjC标签
+
+### 如上图所示在项目Build Setting中，Other Linker Flags加上-ObjC标签
+
