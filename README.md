@@ -14,7 +14,7 @@ aliyun acmp for cordova
 ![插件的安装步骤](./md_images/lALPACOG84RcEhnNBDLNAp0_669_1074.png_620x10000q90g.jpg)
 
 如上图所示，从本地址git clone 项目到本地，也可以直接线上安装
-### cordova plugin add <path> --nofetch --variable APP_KEY=*** --variable APP_SECRET=***
+### cordova plugin add https://github.com/GiterLab/cordova-plugin-acmp.git --nofetch --variable APP_KEY=*** --variable APP_SECRET=***
 使用cordova add plugin命令把plugin安装到项目中，
 ### cordova plugin ls
 使用此命令查看插件装成功与否，如果出现org.giter.pushplugin则表明插件安装成功
@@ -48,7 +48,10 @@ aliyun acmp for cordova
 iOS绑定信息调用接口，同上androidBand
 
 # 5.iOS部分项目配置
+
+
 ![push-open](./md_images/ios-openpush.png)
+
 ### 如上图所示在项目TARGETS中在capabilities中打开Push Notifications
 
 ![-objc配置](./md_images/ios-objc.png)
