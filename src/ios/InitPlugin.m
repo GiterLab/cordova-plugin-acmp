@@ -19,16 +19,55 @@
 
 @implementation InitPlugin
 
--(void)bindAccountandTagandAlias:(CDVInvokedUrlCommand *)cmd{
-    if (cmd.arguments.count<2) {
-        NSLog(@"参数错误");
+-(void)removeAlias:(CDVInvokedUrlCommand *)cmd{
+    if(cmd.arguments.count<1){
+        CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"args error"];
+        [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
         return;
     }
-    NSString *accountid=(NSString *)[cmd.arguments objectAtIndex:0];
-    if([accountid length]>0){
-        [CloudPushSDK bindAccount:accountid withCallback:^(CloudPushCallbackResult *res) {
+    [CloudPushSDK removeAlias:(NSString *)[cmd.arguments objectAtIndex:0] withCallback:^(CloudPushCallbackResult *res) {
+        if (res.success) {
+            CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
+            [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        }else{
+            CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
+            [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+            
+        }
+    }];
+}
+
+-(void)listAlias:(CDVInvokedUrlCommand *)cmd{
+    [CloudPushSDK listAliases:^(CloudPushCallbackResult *res) {
+        if (res.success) {
+            CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[[NSString alloc] initWithData:res.data encoding:NSUTF8StringEncoding]];
+            [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        }else{
+            CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
+            [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        }
+    }];
+}
+
+-(void)listTags:(CDVInvokedUrlCommand *)cmd{
+    if(cmd.arguments.count<1){
+        CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"args error"];
+        [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        return;
+    }
+    NSString *jsonstr=(NSString *)[cmd.arguments objectAtIndex:1];
+    NSData *jsondata=[jsonstr dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableLeaves error:&error];
+    if(!error){
+        CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
+        [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        return;
+    }
+    if([[cmd.arguments objectAtIndex:0]length]>0){
+        [CloudPushSDK listTags:(int)[dic objectForKey:@"tag_key"] withCallback:^(CloudPushCallbackResult *res) {
             if (res.success) {
-                CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
+                CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[[NSString alloc] initWithData:res.data encoding:NSUTF8StringEncoding]];
                 [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
             }else{
                 CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
@@ -36,7 +75,60 @@
             }
         }];
     }
-    
+}
+
+-(void)getDeviceId:(CDVInvokedUrlCommand *)cmd{
+    NSString *device_id= [CloudPushSDK getDeviceId];
+    CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:device_id];
+    [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+}
+
+-(void)unBindTagsandAlias:(CDVInvokedUrlCommand *)cmd{
+    if(cmd.arguments.count<1){
+        CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"args error"];
+        [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        return;
+    }
+    NSString *jsonstr=(NSString *)[cmd.arguments objectAtIndex:1];
+    NSData *jsondata=[jsonstr dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableLeaves error:&error];
+    if(!error){
+        CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
+        [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        return;
+    }
+    NSArray *tags=[dic objectForKey:@"tag_value"];
+    [CloudPushSDK unbindTag:(int)[dic valueForKey:@"tag_key"] withTags:tags withAlias:(NSString *)[dic valueForKey:@"alias"] withCallback:^(CloudPushCallbackResult *res) {
+        if (res.success) {
+            CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
+            [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        }else{
+            CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
+            [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        }
+    }];
+}
+
+-(void)unBindAccount:(CDVInvokedUrlCommand *)cmd{
+        [CloudPushSDK unbindAccount:^(CloudPushCallbackResult *res) {
+            if (res.success) {
+                CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
+                [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+            }else{
+                CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
+                [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+                
+            }
+        }];
+}
+
+-(void)bindTagsandAlias:(CDVInvokedUrlCommand *)cmd{
+    if (cmd.arguments.count<1) {
+        CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"args error"];
+        [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        return;
+    }
     NSString *jsonstr=(NSString *)[cmd.arguments objectAtIndex:1];
     NSData *jsondata=[jsonstr dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
@@ -56,6 +148,26 @@
             [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
         }
     }];
+}
+
+-(void)bindAccount:(CDVInvokedUrlCommand *)cmd{
+    if (cmd.arguments.count<1) {
+        CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"args error"];
+        [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+        return;
+    }
+    NSString *accountid=(NSString *)[cmd.arguments objectAtIndex:0];
+    if([accountid length]>0){
+        [CloudPushSDK bindAccount:accountid withCallback:^(CloudPushCallbackResult *res) {
+            if (res.success) {
+                CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
+                [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+            }else{
+                CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
+                [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+            }
+        }];
+    }
 }
 
 

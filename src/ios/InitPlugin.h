@@ -15,8 +15,26 @@ typedef void(^MessageCallBack)(NSString * title,NSString * body);
 
 @property(nonatomic,weak)MessageCallBack messagecallback;
 
--(void)bindAccountandTagandAlias:(CDVInvokedUrlCommand *)cmd;
 
 -(void)init:(CDVInvokedUrlCommand *)cmd;
+
+
+-(void)bindAccount:(CDVInvokedUrlCommand *)cmd;
+
+-(void)bindTagsandAlias:(CDVInvokedUrlCommand *)cmd;
+
+
+-(void)unBindAccount:(CDVInvokedUrlCommand *)cmd;
+
+-(void)unBindTagsandAlias:(CDVInvokedUrlCommand *)cmd;
+
+
+-(void)getDeviceId:(CDVInvokedUrlCommand *)cmd;
+
+-(void)listTags:(CDVInvokedUrlCommand *)cmd;
+
+-(void)listAlias:(CDVInvokedUrlCommand *)cmd;
+
+-(void)removeAlias:(CDVInvokedUrlCommand *)cmd;
 
 @end
