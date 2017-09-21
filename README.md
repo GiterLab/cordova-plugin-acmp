@@ -27,22 +27,24 @@ aliyun acmp for cordova
 
 # 4.js接口说明
 
-## <del>1.androidInit(success,fail)</del>
+##android
+
+### <del>1.androidInit(success,fail)</del>
  <del>android系统初始化阿里云推送调用接口，success,fail分别为成功和失败的回调函数</del>
 ，随着程序的启动自动初始化，取消了本接口
-## 2.iosInit(successs,fail)
+### 2.iosInit(successs,fail)
  iOS系统初始化阿里云推送调用接口，success,fail分别为成功和失败的回调函数
-## 3.androidBand(success,fail,args)
+### 3.androidBand(success,fail,args)
  android绑定信息调用接口，success,fail为成功和失败的回调函数
-### args格式
+#### args格式
  args为参数数组，args[0]表示需要绑定的账号信息，args[1]为需要给账号添加的tags（标签）和alias（别名）组合成json各式数据
 例如：**["giterlab","{\"tag_key\":1,\"tag_value\":[\"giter\",\"lab\"],\"alias":\"labgiter\"}"]**
 
-### tag_key 目标类型，1：本设备；2：本设备绑定账号；3：别名
+ tag_key 目标类型，1：本设备；2：本设备绑定账号；3：别名
 
-### tag_value 标签（数组输入）
+ tag_value 标签（数组输入）
 
-### alias 别名（仅当tag_key = 3时生效）
+ alias 别名（仅当tag_key = 3时生效）
 
 ## 其中tag_key,tag_value,alias为json的key，不能更改！！
 
