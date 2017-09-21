@@ -1,10 +1,6 @@
 var exec = require('cordova/exec');
 
 
-exports.androidInit =function(success,error){
-	exec(success,error,"Push","init",null);
-}
-
 exports.iosInit=function(success,error){
 	exec(success,error,"PushIOS","init",null);
 }
@@ -35,16 +31,30 @@ exports.iosRemoveAlias=function(success,error){
 	exec(success,error,"PushIOS","removeAlias",null);
 }
 
-exports.androidBand=function(success,error,args){
-    exec(success,error,"Push","bindAccountandTagandAlias",args);
+//android
 
+exports.androidBindAccount=function(success,error,args){
+	exec(success,error,"Push","bindAccount",args);
 }
-//exports.iosBand=function(success,error){
-//   exec(success,error,"PushIOS","bindAccountandTagandAlias",["sdfasfas","{\"tag_key\":1,\"tag_value\":[\"adfsaf\",\"fdasdf\"],\"alias\":\"dfsadfsa\"}"]);
-//               
-//}
-               
-exports.iosBand=function(success,error,args){
-    exec(success,error,"PushIOS","bindAccountandTagandAlias",args);
-               
+exports.androidBindTagsandAlias=function(success,error,args){
+	exec(success,error,"Push","bindTagsandAlias",args);
+}
+exports.androidUnBindAccount=function(success,error,args){
+	exec(success,error,"Push","unBindAccount",args);
+}
+exports.androidUnbindTagsandAlias=function(success,error,args){
+	exec(success,error,"Push","unBindTagsandAlias",args);
+}
+
+exports.androidGetDeviceId=function(success,error){
+	exec(success,error,"Push","getDeviceId",null);
+}
+exports.androidListTags=function(success,error){
+	exec(success,error,"Push","listTags",null);
+}
+exports.androidListAlias=function(success,error){
+	exec(success,error,"Push","listAlias",null);
+}
+exports.androidRemoveAlias=function(success,error){
+	exec(success,error,"Push","removeAlias",null);
 }

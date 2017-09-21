@@ -32,11 +32,31 @@ aliyun acmp for cordova
 ### <del>1.androidInit(success,fail)</del>
  <del>android系统初始化阿里云推送调用接口，success,fail分别为成功和失败的回调函数</del>
 ，随着程序的启动自动初始化，取消了本接口
-### 2.androidBand(success,fail,args)
- android绑定信息调用接口，success,fail为成功和失败的回调函数
-#### args格式
- args为参数数组，args[0]表示需要绑定的账号信息，args[1]为需要给账号添加的tags（标签）和alias（别名）组合成json各式数据
+### <del>2.androidBand(success,fail,args)
+ <del>android绑定信息调用接口，success,fail为成功和失败的回调函数
+#### <del>args格式
+ <del>args为参数数组，args[0]表示需要绑定的账号信息，args[1]为需要给账号添加的tags（标签）和alias（别名）组合成json各式数据
 例如：**["giterlab","{\"tag_key\":1,\"tag_value\":[\"giter\",\"lab\"],\"alias":\"labgiter\"}"]**
+
+ <del>tag_key 目标类型，1：本设备；2：本设备绑定账号；3：别名
+
+ <del>tag_value 标签（数组输入）
+
+ <del>alias 别名（仅当tag_key = 3时生效）
+
+ <del>tag_key 目标类型，1：本设备；2：本设备绑定账号；3：别名
+
+ <del>tag_value 标签（数组输入）
+
+ <del>其中tag_key,tag_value,alias为json的key，不能更改！！
+ 
+### 3.androidBindAccount(success(res),fail(res),args)
+android系统绑定账号信息接口，其中args为参数数组，只接受一个参数，格式：
+["gitlab"]
+
+### 4.androidBindTagsandAlias(success(res),fail(res),args)
+android系统绑定标签别名信息，其中args为参数数组，只接受一个参数，格式：
+**["{\"tag_key\":1,\"tag_value\":[\"giter\",\"lab\"],\"alias":\"labgiter\"}"]**
 
  tag_key 目标类型，1：本设备；2：本设备绑定账号；3：别名
 
@@ -47,20 +67,36 @@ aliyun acmp for cordova
  tag_key 目标类型，1：本设备；2：本设备绑定账号；3：别名
 
  tag_value 标签（数组输入）
+ 
+### 5.androidUnBindAccount(success(res),fail(res))
+android系统解绑账号接口
 
- 其中tag_key,tag_value,alias为json的key，不能更改！！
+### 6.androidUnBindTagsandAlias(success(res),fail(res))
+android系统解绑标签和别名接口，其中args为参数数组，只接受一个参数，格式同绑定标签和别名参数
+### 7.androidGetDeviceId(success(res),fail(res))
+android系统获取设备ID接口，结果在回调函数中以参数形式返回
+
+### 8.androidListTags(success(res),fail(res),args)
+iOS系统获取标签接口，其中args为参数数组，只接受一个参数，格式：
+**[\"{\"tag_key\":1}\"]**
+### 9.androidListAlias(success(res),fail(res))
+iOS获取别名接口，结果在回调函数的参数中返回
+
+### 10.androidRemoveAlias(success(res),fail(res),args)
+iOS移除别名接口,其中args为参数数组，只接受一个参数，格式：
+["gitlab"]
 ## iOS接口
-### 1.iosInit(successs,fail)
+### 1.iosInit(successs(res),fail(res))
  iOS系统初始化阿里云推送调用接口，success,fail分别为成功和失败的回调函数
 
 ### <del>2.iosBand(success,fail,args)
 
 <del>iOS绑定信息调用接口，同上androidBand
-### 3.iosBindAccount(success,fail,args)
+### 3.iosBindAccount(success(res),fail(res),args)
 iOS系统绑定账号信息接口，其中args为参数数组，只接受一个参数，格式：
 ["gitlab"]
 
-### 4.iosBindTagsandAlias(success,fail,args)
+### 4.iosBindTagsandAlias(success(res),fail(res),args)
 iOS系统绑定标签别名信息，其中args为参数数组，只接受一个参数，格式：
 **["{\"tag_key\":1,\"tag_value\":[\"giter\",\"lab\"],\"alias":\"labgiter\"}"]**
 
@@ -74,21 +110,21 @@ iOS系统绑定标签别名信息，其中args为参数数组，只接受一个�
 
  tag_value 标签（数组输入）
  
-### 5.iosUnBindAccount(success,fail)
+### 5.iosUnBindAccount(success(),fail(res))
 iOS系统解绑账号接口
 
-### 6.iosUnBindTagsandAlias(success,fail)
+### 6.iosUnBindTagsandAlias(success(res),fail(res))
 iOS系统解绑标签和别名接口，其中args为参数数组，只接受一个参数，格式同绑定标签和别名参数
-### 7.iosGetDeviceId(success,fail)
+### 7.iosGetDeviceId(success(res),fail(res))
 iOS系统获取设备ID接口，结果在回调函数中以参数形式返回
 
-### 8.iosListTags(success,fail,args)
+### 8.iosListTags(success(res),fail(res),args)
 iOS系统获取标签接口，其中args为参数数组，只接受一个参数，格式：
 **[\"{\"tag_key\":1}\"]**
-### 9.iosListAlias(success,fail)
+### 9.iosListAlias(success(res),fail(res))
 iOS获取别名接口，结果在回调函数的参数中返回
 
-### 10.iosRemoveAlias(success,fail,args)
+### 10.iosRemoveAlias(success(res),fail(res),args)
 iOS移除别名接口,其中args为参数数组，只接受一个参数，格式：
 ["gitlab"]
 
