@@ -1,6 +1,7 @@
 package org.giterlab;
 
 import android.graphics.BitmapFactory;
+import android.media.MediaCodec;
 import android.widget.Toast;
 
 import org.apache.cordova.CallbackContext;
@@ -15,9 +16,12 @@ import android.util.Log;
 //import com.alibaba.sdk.android.callback.InitResultCallback;
 import com.alibaba.sdk.android.push.CloudPushService;
 import com.alibaba.sdk.android.push.CommonCallback;
+import com.alibaba.sdk.android.push.common.util.SysInfoUtil;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 import com.alibaba.fastjson.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,42 +33,18 @@ public class Push extends CordovaPlugin{
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         this.mCallbackContext = callbackContext;
-        if("bindAccount".equals(action)){
-            return bindAccount(args,callbackContext);
-        }else if ("bindTagsandAlias".equals(action)){
-            return bindTagsandAlias(args,callbackContext);
-        }else if ("unBindAccount".equals(action)){
-            return unBindAccount(args,callbackContext);
-        }else if("unBindTagsandAlias".equals(action)){
-            return unBindTagsandAlias(args, callbackContext);
-        } else if ("getDeviceId".equals(action)) {
-            return getDeviceId(args, callbackContext);
-        }else if ("listTags".equals(action)){
-            return listTags(args, callbackContext);
-        }else if ("listAlias".equals(action)){
-            return listAlias(args, callbackContext);
-        }else if ("removeAlias".equals(action)){
-            return removeAlias(args, callbackContext);
-        }else if ("setNotificationSoundFilePath".equals(action)){
-            return setNotificationSoundFilePath(args, callbackContext);
-        }else if ("setNotificationLargeIcon".equals(action)){
-            return setNotificationLargeIcon(args, callbackContext);
-        }else if ("setNotificationSmallIcon".equals(action)){
-            return setNotificationSmallIcon(args, callbackContext);
-        }else if ("setDoNotDisturb".equals(action)){
-            return setDoNotDisturb(args, callbackContext);
-        }else if ("setCloseDoNotturbMode".equals(action)){
-            return setCloseDoNotturbMode(args, callbackContext);
-        }else if ("setCleraNotifications".equals(action)){
-            return setCleraNotifications(args, callbackContext);
-        }else if ("bindPhoneNumber".equals(action)){
-            return bindPhoneNumber(args, callbackContext);
-        }else if ("unBindPhoneNum".equals(action)){
-            return unBindPhoneNum(args, callbackContext);
-        }else {
+        Class thisclass=Push.class;
+        try {
+            Method method=thisclass.getDeclaredMethod(action,JSONArray.class,CallbackContext.class);
+            return (Boolean)method.invoke(this,args,callbackContext);
+        } catch (NoSuchMethodException e) {
             mCallbackContext.error("error");
-            return false;
+        } catch (InvocationTargetException e) {
+            mCallbackContext.error("error");
+        } catch (IllegalAccessException e) {
+            mCallbackContext.error("error");
         }
+        return false;
     }
 
     private boolean bindAccount(JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -72,6 +52,7 @@ public class Push extends CordovaPlugin{
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR,"invaild arguements"));
             return false;
         }
+
 
         CloudPushService cloudPushService=PushServiceFactory.getCloudPushService();
         if (args.get(0).toString().length()!=0){
@@ -183,6 +164,7 @@ public class Push extends CordovaPlugin{
         callbackContext.success("success");
         return true;
     }
+
     private boolean listTags(JSONArray args, final CallbackContext callbackContext)throws JSONException{
         if (args.length()<1){
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR,"invaild arguements"));
@@ -233,6 +215,7 @@ public class Push extends CordovaPlugin{
         callbackContext.success("success");
         return true;
     }
+
     private boolean removeAlias(JSONArray args, final CallbackContext callbackContext)throws JSONException{
         if (args.length()<1){
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR,"invaild arguements"));
@@ -276,6 +259,7 @@ public class Push extends CordovaPlugin{
         }
         return true;
     }
+
     private boolean setNotificationLargeIcon(JSONArray args, final CallbackContext callbackContext)throws JSONException{
         if (args.length()<1){
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR,"invaild arguements"));
@@ -294,6 +278,7 @@ public class Push extends CordovaPlugin{
         }
         return true;
     }
+
     private boolean setNotificationSmallIcon(JSONArray args, final CallbackContext callbackContext)throws JSONException{
         if (args.length()<1){
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR,"invaild arguements"));
@@ -311,6 +296,7 @@ public class Push extends CordovaPlugin{
         return true;
 
     }
+
     private boolean setDoNotDisturb(JSONArray args, final CallbackContext callbackContext)throws JSONException{
         if (args.length()<4){
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR,"invaild arguements"));
@@ -344,16 +330,19 @@ public class Push extends CordovaPlugin{
         });
         return true;
     }
+
     private boolean setCloseDoNotturbMode(JSONArray args, final CallbackContext callbackContext)throws JSONException{
         CloudPushService cloudPushService=PushServiceFactory.getCloudPushService();
         cloudPushService.closeDoNotDisturbMode();
         return true;
     }
+
     private boolean setCleraNotifications(JSONArray args, final CallbackContext callbackContext)throws JSONException{
         CloudPushService cloudPushService=PushServiceFactory.getCloudPushService();
         cloudPushService.clearNotifications();
         return true;
     }
+
     private boolean bindPhoneNumber(JSONArray args, final CallbackContext callbackContext)throws JSONException{
         if (args.length()<1){
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR,"invaild arguements"));
@@ -381,6 +370,7 @@ public class Push extends CordovaPlugin{
         });
         return true;
     }
+
     private boolean unBindPhoneNum(JSONArray args, final CallbackContext callbackContext)throws JSONException{
         CloudPushService cloudPushService=PushServiceFactory.getCloudPushService();
         cloudPushService.unbindPhoneNumber(new CommonCallback() {
