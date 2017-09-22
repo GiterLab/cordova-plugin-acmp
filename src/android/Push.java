@@ -38,11 +38,11 @@ public class Push extends CordovaPlugin{
             Method method=thisclass.getDeclaredMethod(action,JSONArray.class,CallbackContext.class);
             return (Boolean)method.invoke(this,args,callbackContext);
         } catch (NoSuchMethodException e) {
-            mCallbackContext.error("error");
+            mCallbackContext.error("NoSuchMethodException");
         } catch (InvocationTargetException e) {
-            mCallbackContext.error("error");
+            mCallbackContext.error("InvocationTargetException");
         } catch (IllegalAccessException e) {
-            mCallbackContext.error("error");
+            mCallbackContext.error("IllegalAccessException");
         }
         return false;
     }
