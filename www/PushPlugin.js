@@ -58,3 +58,27 @@ exports.androidListAlias=function(success,error){
 exports.androidRemoveAlias=function(success,error){
 	exec(success,error,"Push","removeAlias",null);
 }
+exports.androidSetNotificationSoundFilePath=function(success,error,args){
+	exec(success,error,"Push","setNotificationSoundFilePath",args);
+}
+exports.androidSetNotificationLargeIcon=function(success,error,args){
+	exec(success,error,"Push","setNotificationLargeIcon",args);
+}
+exports.androidSetNotificationSmallIcon=function(success,error,args){
+	exec(success,error,"Push","setNotificationSmallIcon",args);
+}
+exports.androidSetDoNotDisturb=function(success,error,args){
+	exec(success,error,"Push","setDoNotDisturb",args);
+}
+exports.androidSetCloseDoNotturbMode=function(success,error){
+	exec(success,error,"Push","setCloseDoNotturbMode",null);
+}
+exports.androidSetClearNotifications=function(success,error){
+	exec(success,error,"Push","setCleraNotifications",null);
+}
+exports.androidBindPhoneNumber=function(success,error,args){
+	exec(success,error,"Push","bindPhoneNumber",args);
+}
+exports.androidUnBindPhoneNum=function(success,error){
+	exec(success,error,"Push","unBindPhoneNum",null);
+}

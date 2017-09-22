@@ -77,14 +77,36 @@ android系统解绑标签和别名接口，其中args为参数数组，只接受
 android系统获取设备ID接口，结果在回调函数中以参数形式返回
 
 ### 8.androidListTags(success(res),fail(res),args)
-iOS系统获取标签接口，其中args为参数数组，只接受一个参数，格式：
+android系统获取标签接口，其中args为参数数组，只接受一个参数，格式：
 **[\"{\"tag_key\":1}\"]**
 ### 9.androidListAlias(success(res),fail(res))
-iOS获取别名接口，结果在回调函数的参数中返回
+android获取别名接口，结果在回调函数的参数中返回
 
 ### 10.androidRemoveAlias(success(res),fail(res),args)
-iOS移除别名接口,其中args为参数数组，只接受一个参数，格式：
+android移除别名接口,其中args为参数数组，只接受一个参数，格式：
 ["gitlab"]
+### 11.androidSetNotificationSoundFilePath(success(res),fail(res),args)
+android设置通知声音接口接口,其中args为参数数组，只接受一个参数，格式：
+["R.raw.alicloud_notification_sound"]
+### 12.androidSetNotificationLargeIcon(success(res),fail(res),args)
+android设置通知栏图标接口,其中args为参数数组，只接受一个参数，格式：
+["R.drawable.alicloud_notification_largelcon"]
+### 13.androidSetNotificationSmallIcon(success(res),fail(res),args)
+android设置通知栏图标接口,其中args为参数数组，只接受一个参数，格式：
+[1]
+### 14.androidSetDoNotDisturb(success(res),fail(res),args)
+android设置免打扰时间段接口,其中args为参数数组，只接受一个参数，格式：
+[13，47，15，50]
+其中args[0]为开始的小时，args[1]为开始的分钟,args[2]为结束的小时,args[3]为结束的分钟
+### 15.androidSetCloseDoNotturbMode(success(res),fail(res))
+android关闭免打扰接口
+### 16.androidSetClearNotifications(success(res),fail(res))
+android删除免打扰接口
+### 17.androidBindPhoneNumber(success(res),fail(res),args)
+android设置通知手机短信提醒的接口（仅限于使用了阿里云短信推送的开发者）,args为参数数组，只接受一个参数，格式：
+["1313***8503"]
+### 18.androidUnBindPhoneNum(success(res),fail(res))
+android解绑手机短信通知接口
 ## iOS接口
 ### 1.iosInit(successs(res),fail(res))
  iOS系统初始化阿里云推送调用接口，success,fail分别为成功和失败的回调函数
