@@ -61,3 +61,11 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+##markdown picture file
+
+md_images
+
+##npm log file
+
+*.log

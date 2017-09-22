@@ -7,6 +7,9 @@ import android.util.Log;
 import com.alibaba.sdk.android.push.CloudPushService;
 import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
+import com.alibaba.sdk.android.push.register.GcmRegister;
+import com.alibaba.sdk.android.push.register.HuaWeiRegister;
+import com.alibaba.sdk.android.push.register.MiPushRegister;
 
 import static com.alibaba.sdk.android.push.AgooMessageReceiver.TAG;
 
@@ -25,6 +28,9 @@ public class DXApplication extends Application {
     public void onCreate(){
         super.onCreate();
         init(this);
+//        MiPushRegister.register(this,"小米APPID","小米APPKEY");
+//        HuaWeiRegister.register(this);
+//        GcmRegister.register(this,"华为SENDID","华为APPLICATIONID");
         myContext= DXApplication.this;
     }
 
