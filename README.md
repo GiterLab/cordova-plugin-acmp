@@ -20,7 +20,7 @@ aliyun acmp for cordova
 使用此命令查看插件装成功与否，如果出现org.giter.pushplugin则表明插件安装成功
 
 # 3.js的调用
-![插件的使用](./md_images/js-use.jpg)
+![插件的使用](./md_images/js-use.png)
 <br>
 如上图所示，在项目家在cordova.js的情况先，直接使用cordova.plugins.PushPlugin.androidInit(success,fail)调用
 
@@ -162,3 +162,12 @@ iOS移除别名接口,其中args为参数数组，只接受一个参数，格式
 <br>
 如上图所示在项目Build Setting中，Other Linker Flags加上-ObjC标签
 
+
+# 6.小米华为辅助通道配置
+
+![小米华为辅助通道的配置](./md_images/huawei-xiaomi.png)
+上图中在init(this)；方法下面打开注释的三行即打开了小米华为的辅助推送通道，关于小米、华为开发者账号的注册请参照：
+[移动辅助通道配置](https://help.aliyun.com/document_detail/30067.html?spm=5176.doc30064.6.621.uWVKlw)<br>
+小米开发者账号注册：[小米开放平台](https://dev.mi.com/console/)<br>
+华为开发者账号注册：[华为开发者联盟](http://developer.huawei.com/consumer/cn/?spm=5176.doc30067.2.14.rPh7O7)<br>
+FCM推送平台注册：[FCM推送平台](https://console.firebase.google.com/?spm=5176.doc30067.2.15.fEbcKU)
