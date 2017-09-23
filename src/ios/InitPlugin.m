@@ -19,6 +19,18 @@
 
 @implementation InitPlugin
 
+-(void)onMessageRes:(CDVInvokedUrlCommand *)cmd{
+//    CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
+    [self msgRes:^(NSString *jsonmsg) {
+        CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonmsg];
+        result.keepCallback=[NSNumber numberWithInt:1];
+        [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+    }];
+}
+-(void)msgRes:(MessageCallBack )callback{
+    _messagecallback=callback;
+}
+
 -(void)removeAlias:(CDVInvokedUrlCommand *)cmd{
     if(cmd.arguments.count<1){
         CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"args error"];
@@ -268,8 +280,8 @@
  */
 - (void)onMessageReceived:(NSNotification *)notification {
     CCPSysMessage *message = [notification object];
-    //_messagecallback([[NSString alloc] initWithData:message.title encoding:NSUTF8StringEncoding],[[NSString alloc] initWithData:message.body encoding:NSUTF8StringEncoding]);
-    NSLog(@"Receive message title: %@, content: %@.", [[NSString alloc] initWithData:message.title encoding:NSUTF8StringEncoding], [[NSString alloc] initWithData:message.body encoding:NSUTF8StringEncoding]);
+    NSString *jstr= [NSString stringWithFormat:@"{\"msgtype\":%hhu,\"msgtitle\":%@,\"msgcontent\":%@}",message.messageType, [[NSString alloc] initWithData:message.title encoding:NSUTF8StringEncoding],[[NSString alloc] initWithData:message.body encoding:NSUTF8StringEncoding]];
+    _messagecallback(jstr);
 }
 
 - (void)listenerOnChannelOpened {
@@ -282,7 +294,7 @@
 
 // 通道打开通知
 - (void)onChannelOpened:(NSNotification *)notification {
-    NSLog(@"--------->通道已建立");
+    NSLog(@"通道已建立");
 }
 
 

@@ -30,6 +30,9 @@ exports.iosListAlias=function(success,error){
 exports.iosRemoveAlias=function(success,error){
 	exec(success,error,"PushIOS","removeAlias",null);
 }
+exports.iosOnMessageRes=function(success,error){
+	exec(success,error,"PushIOS","onMessageRes",null);
+}
 
 //android
 
@@ -81,4 +84,7 @@ exports.androidBindPhoneNumber=function(success,error,args){
 }
 exports.androidUnBindPhoneNum=function(success,error){
 	exec(success,error,"Push","unBindPhoneNum",null);
+}
+exports.androidOnMessageRes=function(success,error){
+	exec(success,error,"Push","onMessageRes",null);
 }

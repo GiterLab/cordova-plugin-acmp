@@ -9,11 +9,11 @@
 #import <Cordova/CDV.h>
 #import <CloudPushSDK/CloudPushSDK.h>
 
-typedef void(^MessageCallBack)(NSString * title,NSString * body);
+typedef void(^MessageCallBack)(NSString * jsonmsg);
 
 @interface InitPlugin : CDVPlugin
 
-@property(nonatomic,weak)MessageCallBack messagecallback;
+@property(nonatomic,copy)MessageCallBack messagecallback;
 
 
 -(void)init:(CDVInvokedUrlCommand *)cmd;
@@ -36,5 +36,7 @@ typedef void(^MessageCallBack)(NSString * title,NSString * body);
 -(void)listAlias:(CDVInvokedUrlCommand *)cmd;
 
 -(void)removeAlias:(CDVInvokedUrlCommand *)cmd;
+
+-(void)onMessageRes:(CDVInvokedUrlCommand *)cmd;
 
 @end

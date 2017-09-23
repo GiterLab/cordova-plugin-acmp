@@ -3,6 +3,7 @@ package org.giterlab;
 import android.content.Context;
 import android.util.Log;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.sdk.android.push.MessageReceiver;
 import com.alibaba.sdk.android.push.notification.CPushMessage;
 
@@ -14,6 +15,12 @@ import java.util.Map;
 
 public class DXReceiver extends MessageReceiver {
 
+    private static MsgCallBack msgCallBack;
+
+    public void setCallBack(MsgCallBack callBack){
+        msgCallBack=callBack;
+    }
+
     // 消息接收部分的LOG_TAG
     public static final String REC_TAG = "receiver";
     @Override
@@ -24,6 +31,7 @@ public class DXReceiver extends MessageReceiver {
     }
     @Override
     public void onMessage(Context context, CPushMessage cPushMessage) {
+        msgCallBack.onMsgResvice(JSONObject.toJSONString(cPushMessage));
         System.out.println("----------------->2:"+context.toString()+cPushMessage.toString());
         Log.e("MyMessageReceiver", "onMessage, messageId: " + cPushMessage.getMessageId() + ", title: " + cPushMessage.getTitle() + ", content:" + cPushMessage.getContent());
     }

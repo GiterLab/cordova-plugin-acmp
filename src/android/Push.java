@@ -388,6 +388,17 @@ public class Push extends CordovaPlugin{
         });
         return true;
     }
-
+    private boolean onMessageRes(JSONArray args, final CallbackContext callbackContext)throws JSONException{
+        new DXReceiver().setCallBack(new MsgCallBack() {
+            @Override
+            public void onMsgResvice(String jsonmsg) {
+                PluginResult pluginResult=new PluginResult(PluginResult.Status.OK,jsonmsg);
+                pluginResult.setKeepCallback(true);
+                callbackContext.sendPluginResult(pluginResult);
+                Log.d(TAG,"onMessageRes success");
+            }
+        });
+        return true;
+    }
 
 }
