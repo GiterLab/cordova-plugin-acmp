@@ -27,7 +27,7 @@ aliyun acmp for cordova
 
 # 4.js接口说明
 
-##android接口
+## android接口
 
 ### <del>1.androidInit(success,fail)</del>
  <del>android系统初始化阿里云推送调用接口，success,fail分别为成功和失败的回调函数</del>
