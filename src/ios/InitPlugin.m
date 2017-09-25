@@ -285,7 +285,9 @@
 - (void)onMessageReceived:(NSNotification *)notification {
     CCPSysMessage *message = [notification object];
     NSString *jstr= [NSString stringWithFormat:@"{\"msgtype\":%hhu,\"msgtitle\":%@,\"msgcontent\":%@}",message.messageType, [[NSString alloc] initWithData:message.title encoding:NSUTF8StringEncoding],[[NSString alloc] initWithData:message.body encoding:NSUTF8StringEncoding]];
-    _messagecallback(jstr);
+    if (_messagecallback!=NULL) {
+        _messagecallback(jstr);
+    }
 }
 
 - (void)listenerOnChannelOpened {
@@ -318,7 +320,9 @@
     // 通知打开回执上报
     [CloudPushSDK sendNotificationAck:userInfo];
     NSString *str=[NSString stringWithFormat:@"{\"at\":%ld,\"title\":%@,\"subtitle\":%@,\"body\":%@,\"badge\":%d,\"extras\":%@}",[[NSNumber numberWithDouble:[noticeDate timeIntervalSince1970]]integerValue],title,subtitle,body,badge,extras];
-    _notifycallback(str);
+    if (_notifycallback!=NULL) {
+        _notifycallback(str);
+    }
     NSLog(@"Notification, date: %@, title: %@, subtitle: %@, body: %@, badge: %d, extras: %@.", noticeDate, title, subtitle, body, badge, extras);
 }
 /**
