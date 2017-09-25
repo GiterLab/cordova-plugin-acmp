@@ -19,6 +19,18 @@
 
 @implementation InitPlugin
 
+-(void)onNotificationClick:(CDVInvokedUrlCommand *)cmd{
+    [self notifyClick:^(NSString *jsonnotify) {
+        CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonnotify];
+        result.keepCallback=[NSNumber numberWithInt:1];
+        [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
+    }];
+}
+
+-(void)notifyClick:(RomoteNotificationOpen)callback{
+    _notifycallback=callback;
+}
+
 -(void)onMessageRes:(CDVInvokedUrlCommand *)cmd{
 //    CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
     [self msgRes:^(NSString *jsonmsg) {
@@ -188,14 +200,6 @@
     [self registerMessageReceive];
     [self listenerOnChannelOpened];
     [CloudPushSDK sendNotificationAck:NULL];
-    //CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
-   // [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
-    /*
-    NSArray *obj=(NSArray *)[cmd.arguments objectAtIndex:0];
-    if(obj !=nil)
-    for (NSString * tag in obj) {
-        NSLog(@"tag is%@",tag);
-    }*/
 }
 
 -(void)initPush{
@@ -301,25 +305,20 @@
 /**
  *  处理iOS 10通知(iOS 10+)
  */
-- (void)handleiOS10Notification:(UNNotification *)notification {
+- (void)handleiOS10Notification:(UNNotification *)notification{
     UNNotificationRequest *request = notification.request;
     UNNotificationContent *content = request.content;
     NSDictionary *userInfo = content.userInfo;
-    // 通知时间
     NSDate *noticeDate = notification.date;
-    // 标题
     NSString *title = content.title;
-    // 副标题
     NSString *subtitle = content.subtitle;
-    // 内容
     NSString *body = content.body;
-    // 角标
     int badge = [content.badge intValue];
-    // 取得通知自定义字段内容，例：获取key为"Extras"的内容
     NSString *extras = [userInfo valueForKey:@"Extras"];
     // 通知打开回执上报
     [CloudPushSDK sendNotificationAck:userInfo];
-    //[UIApplication sharedApplication].applicationIconBadgeNumber+=1;
+    NSString *str=[NSString stringWithFormat:@"{\"at\":%ld,\"title\":%@,\"subtitle\":%@,\"body\":%@,\"badge\":%d,\"extras\":%@}",[[NSNumber numberWithDouble:[noticeDate timeIntervalSince1970]]integerValue],title,subtitle,body,badge,extras];
+    _notifycallback(str);
     NSLog(@"Notification, date: %@, title: %@, subtitle: %@, body: %@, badge: %d, extras: %@.", noticeDate, title, subtitle, body, badge, extras);
 }
 /**
@@ -327,12 +326,8 @@
  */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
     NSLog(@"Receive a notification in foregound.");
-    // 处理iOS 10通知相关字段信息
-    [self handleiOS10Notification:notification];
-    // 通知不弹出
-    //completionHandler(UNNotificationPresentationOptionNone);
-    // 通知弹出，且带有声音、内容和角标（App处于前台时不建议弹出通知）
-    completionHandler(UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge);
+//    [self handleiOS10Notification:notification background:0];
+    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert);
 }
 
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{

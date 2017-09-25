@@ -110,6 +110,8 @@ android解绑手机短信通知接口
 
 ### 19.androidOnMessageRes(success(res),fail(res))
 android接受消息通道接口，结果以回调参数形式返回，（数据格式与iOS不同）
+### 20.androidOnNotifyClick(success(res),fail(res))
+android处理用户点击通知回调，结果以回调参数形式返回，（数据格式与iOS不同）
 ## iOS接口
 ### 1.iosInit(successs(res),fail(res))
  iOS系统初始化阿里云推送调用接口，success,fail分别为成功和失败的回调函数
@@ -155,6 +157,9 @@ iOS移除别名接口,其中args为参数数组，只接受一个参数，格式
 
 ### 11.iosOnMessageRes(success(res),fail(res))
 iOS接受消息通道，结果以回调参数形式返回，（数据格式与android不同）
+
+### 12.iosOnNotificationClick(success(res),fail(res))
+iOS处理用户点击通知回调，（数据格式与android不同）
 
 # 5.iOS部分项目配置
 

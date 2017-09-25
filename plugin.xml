@@ -43,6 +43,7 @@
     	  <source-file src="src/android/DXReceiver.java" target-dir="src/org/giterlab" />
     	  <source-file src="src/android/DXApplication.java" target-dir="src/org/giterlab" />
     	  <source-file src="src/android/MsgCallBack.java" target-dir="src/org/giterlab" />
+    	  <source-file src="src/android/NotifyCallBack.java" target-dir="src/org/giterlab" />
 	      <config-file target="res/xml/config.xml" parent="/*">  
 	          <feature name="Push">  
 	              <param name="android-package" value="org.giterlab.Push"/>  

@@ -33,6 +33,9 @@ exports.iosRemoveAlias=function(success,error){
 exports.iosOnMessageRes=function(success,error){
 	exec(success,error,"PushIOS","onMessageRes",null);
 }
+exports.iosOnNotificationClick=function(success,error){
+	exec(success,error,"PushIOS","onNotificationClick",null);
+}
 
 //android
 
@@ -87,4 +90,7 @@ exports.androidUnBindPhoneNum=function(success,error){
 }
 exports.androidOnMessageRes=function(success,error){
 	exec(success,error,"Push","onMessageRes",null);
+}
+exports.androidOnNotifyClick=function(success,error){
+	exec(success,error,"Push","onNotifyClick",null);
 }

@@ -10,10 +10,12 @@
 #import <CloudPushSDK/CloudPushSDK.h>
 
 typedef void(^MessageCallBack)(NSString * jsonmsg);
+typedef void(^RomoteNotificationOpen)(NSString *jsonnotify);
 
 @interface InitPlugin : CDVPlugin
 
 @property(nonatomic,copy)MessageCallBack messagecallback;
+@property(nonatomic,copy)RomoteNotificationOpen notifycallback;
 
 
 -(void)init:(CDVInvokedUrlCommand *)cmd;
@@ -38,5 +40,7 @@ typedef void(^MessageCallBack)(NSString * jsonmsg);
 -(void)removeAlias:(CDVInvokedUrlCommand *)cmd;
 
 -(void)onMessageRes:(CDVInvokedUrlCommand *)cmd;
+
+-(void)onNotificationClick:(CDVInvokedUrlCommand *)cmd;
 
 @end

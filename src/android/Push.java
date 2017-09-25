@@ -401,4 +401,17 @@ public class Push extends CordovaPlugin{
         return true;
     }
 
+    private boolean onNotifyClick(JSONArray args, final CallbackContext callbackContext)throws JSONException{
+        new DXReceiver().setNotifyCallBack(new NotifyCallBack() {
+            @Override
+            public void onNotifyClick(String msg) {
+                PluginResult pluginResult=new PluginResult(PluginResult.Status.OK,msg);
+                pluginResult.setKeepCallback(true);
+                callbackContext.sendPluginResult(pluginResult);
+                Log.d(TAG,"onMessageRes success");
+            }
+        });
+        return true;
+    }
+
 }

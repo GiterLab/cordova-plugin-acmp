@@ -22,7 +22,6 @@
 
 
 -(void)applicationDidEnterBackground:(UIApplication *)application{
-    // NSLog(@"okkkkkkkkk");
 }
 
 
@@ -67,12 +66,7 @@
     NSString *Extras = [userInfo valueForKey:@"Extras"]; //服务端中Extras字段，key是自己定义的
     NSLog(@"content = [%@], badge = [%ld], sound = [%@], Extras = [%@]", content, (long)badge, sound, Extras);
     // iOS badge 清0
-    application.applicationIconBadgeNumber +=1;
-    NSLog(@"-------->numbercount=%ld",application.applicationIconBadgeNumber);
-    // 同步通知角标数到服务端
-    // [self syncBadgeNum:application.applicationIconBadgeNumber];
-    // 通知打开回执上报
-    // [CloudPushSDK handleReceiveRemoteNotification:userInfo];(Deprecated from v1.8.1)
+    application.applicationIconBadgeNumber =0;
     [CloudPushSDK sendNotificationAck:userInfo];
 }
 
