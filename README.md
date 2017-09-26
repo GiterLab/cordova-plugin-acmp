@@ -1,5 +1,6 @@
 # cordova-plugin-acmp
-aliyun acmp for cordova
+aliyun acmp for cordova<br>
+如果你有好的建议，请联系钉钉：13136168503
 
 
 ## 本插件的作用
