@@ -1,7 +1,7 @@
 {
   "name": "PushPlugin",
-  "version": "0.0.1",
-  "description": "",
+  "version": "1.0.1",
+  "description": "cordova plugin to use the alicloud mobile push",
   "cordova": {
     "id": "cordova-plugin-acmp",
     "platforms": ["android","iOS"]
