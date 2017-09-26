@@ -43,7 +43,7 @@ public class DXReceiver extends MessageReceiver {
     }
     @Override
     public void onNotificationOpened(Context context, String title, String summary, String extraMap) {
-        String jsstr="{\"title\":"+title+",\"summary\":"+summary+",\"extraMap\":"+extraMap+"}";
+        String jsstr="{\"title\":\""+title+"\",\"summary\":\""+summary+"\",\"extraMap\":\""+extraMap+"\"}";
         notifyCallBack.onNotifyClick(jsstr);
         System.out.println("----------------->3:"+context.toString()+title+summary+extraMap.toString());
         Log.e("MyMessageReceiver", "onNotificationOpened, title: " + title + ", summary: " + summary + ", extraMap:" + extraMap);
