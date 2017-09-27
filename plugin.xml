@@ -6,8 +6,10 @@
         <clobbers target="cordova.plugins.PushPlugin" />
     </js-module>
 
-    <preference name="APP_KEY"/>
-    <preference name="APP_SECRET"/>
+    <preference name="ANDROID_APP_KEY"/>
+    <preference name="ANDROID_APP_SECRET"/>
+    <preference name="IOS_APP_KEY"/>
+    <preference name="IOS_APP_SECRET"/>
 
     <platform name="android">
     	  <source-file src="src/android/libs" target-dir="src/org/giterlab" />
@@ -52,8 +54,8 @@
 
          <config-file target="AndroidManifest.xml" parent="/manifest/application">  
 
-         	<meta-data android:name="com.alibaba.app.appkey" android:value="$APP_KEY"/>
-    		<meta-data android:name="com.alibaba.app.appsecret" android:value="$APP_SECRET"/>
+         	<meta-data android:name="com.alibaba.app.appkey" android:value="$ANDROID_APP_KEY"/>
+    		<meta-data android:name="com.alibaba.app.appsecret" android:value="$ANDROID_APP_SECRET"/>
 			        <!-- Push SDK 相关组件，required-->
 	        <!-- 消息接收服务 -->
 	        <service
@@ -308,10 +310,10 @@
 	    </config-file> 
 
 	    <config-file target="*PushConfig.plist" parent="AppKey">
-            <string>$APP_KEY</string>
+            <string>$IOS_APP_KEY</string>
         </config-file>
        	<config-file target="*PushConfig.plist" parent="AppSecret">
-            <string>$APP_SECRET</string>
+            <string>$IOS_APP_SECRET</string>
         </config-file>
 
 

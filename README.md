@@ -16,7 +16,9 @@ aliyun acmp for cordova<br>
 ![插件的安装步骤](./md_images/cordova.jpg)
 
 如上图所示，从本地址git clone 项目到本地，也可以直接线上安装
-### cordova plugin add \<path\> --nofetch --force --variable APP_KEY=*** --variable APP_SECRET=***
+### <del>cordova plugin add \<path\> --nofetch --force --variable APP_KEY=*** --variable APP_SECRET=***
+由于阿里云移动推送的改版，现在Android和iOS的appid和appsercret分离，所以安装命令修改如下：<br>
+### cordova plugin add \<path\> --nofetch --force --variable ANDROID_APP_KEY=*** --variable ANDROID_APP_SECRET=*** --variable IOS_APP_KEY=*** --variable IOS_APPSECRET=***
 使用cordova add plugin命令把plugin安装到项目中。<br>
 PS:因为本项目对安卓的mainfest.xml文件作了修改，--force为了重写mainfest.xml文件，避免引起冲突，如有需要可在插件安装成功之后把需要自行添加到mainfest文件中。
 ### cordova plugin ls
