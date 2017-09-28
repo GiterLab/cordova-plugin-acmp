@@ -32,7 +32,7 @@ PS:因为本项目对安卓的mainfest.xml文件作了修改，--force为了重�
 
 # 4.js接口说明
 
-## android接口
+## android接口([具体可参考](https://help.aliyun.com/document_detail/30066.html?spm=5176.doc51056.6.620.R8qiaA))
 
 ### <del>1.androidInit(success,fail)</del>
  <del>android系统初始化阿里云推送调用接口，success,fail分别为成功和失败的回调函数</del>
@@ -117,7 +117,7 @@ android解绑手机短信通知接口
 android接受消息通道接口，结果以回调参数形式返回，（数据格式与iOS不同）
 ### 20.androidOnNotifyClick(success(res),fail(res))
 android处理用户点击通知回调，结果以回调参数形式返回，（数据格式与iOS不同）
-## iOS接口
+## iOS接口([具体可参考](https://help.aliyun.com/document_detail/42668.html?spm=5176.doc30066.6.626.JxmZqE))
 ### 1.iosInit(successs(res),fail(res))
  iOS系统初始化阿里云推送调用接口，success,fail分别为成功和失败的回调函数
 
