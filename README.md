@@ -27,7 +27,8 @@ PS:因为本项目对安卓的mainfest.xml文件作了修改，--force为了重�
 # 3.js的调用
 ![插件的使用](./md_images/js-use.png)
 <br>
-如上图所示，在项目家在cordova.js的情况先，直接使用cordova.plugins.PushPlugin.androidInit(success,fail)调用
+如上图所示，在项目家在cordova.js的情况先，直接使用cordova.plugins.PushPlugin.androidInit(success,fail)调用<br>
+由于plugin已经安装到项目中去，所以也可以通过window.cordova.plugins.PushPlugin.funcName(success(res),fail(res))全局调用
 
 
 # 4.js接口说明
