@@ -187,4 +187,4 @@ iOS处理用户点击通知回调，（数据格式与android不同）
 [移动辅助通道配置](https://help.aliyun.com/document_detail/30067.html?spm=5176.doc30064.6.621.uWVKlw)<br>
 小米开发者账号注册：[小米开放平台](https://dev.mi.com/console/)<br>
 华为开发者账号注册：[华为开发者联盟](http://developer.huawei.com/consumer/cn/?spm=5176.doc30067.2.14.rPh7O7)<br>
-FCM推送平台注册：[FCM推送平台](https://console.firebase.google.com/?spm=5176.doc30067.2.15.fEbcKU)
+FCM推送平台注册：[FCM推送平台](https://console.firebase.google.com/?spm=5176.doc30067.2.15.fEbcKU)<br>
