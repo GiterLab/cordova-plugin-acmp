@@ -209,9 +209,13 @@
     [CloudPushSDK asyncInit:app_key appSecret:app_secret callback:^(CloudPushCallbackResult *res) {
         if (res.success) {
             NSLog(@"success");
+            CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
+            [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
             [self registerAPNS:[UIApplication sharedApplication]];
         }else{
             NSLog(@"%@",res.error);
+            CDVPluginResult *result=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"error"];
+            [self.commandDelegate sendPluginResult:result callbackId:cmd.callbackId];
         }
     }];
 
