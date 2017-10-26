@@ -196,13 +196,13 @@
 
 
 -(void)init:(CDVInvokedUrlCommand *)cmd{
-    [self initPush];
+    [self initPush:cmd];
     [self registerMessageReceive];
     [self listenerOnChannelOpened];
     [CloudPushSDK sendNotificationAck:NULL];
 }
 
--(void)initPush{
+-(void)initPush:(CDVInvokedUrlCommand *)cmd{
     NSMutableDictionary *plistDict=[[NSMutableDictionary alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PushConfig" ofType:@"plist"]];
     NSString *app_key=[plistDict valueForKey:@"AppKey"];
     NSString *app_secret=[plistDict valueForKey:@"AppSecret"];
