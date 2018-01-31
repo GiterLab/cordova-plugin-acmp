@@ -2,7 +2,7 @@ var exec = require('cordova/exec');
 
 
 exports.iosInit=function(success,error){
-	exec(success,error,"PushIOS","init",null);
+	exec(success,error,"PushIOS","init",[]);
 }
 
 exports.iosBindAccount=function(success,error,args){
@@ -19,22 +19,22 @@ exports.iosUnBindTagsandAlias=function(success,error,args){
 }
 
 exports.iosGetDeviceId=function(success,error){
-	exec(success,error,"PushIOS","getDeviceId",null);
+	exec(success,error,"PushIOS","getDeviceId",[]);
 }
 exports.iosListTags=function(success,error){
-	exec(success,error,"PushIOS","listTags",null);
+	exec(success,error,"PushIOS","listTags",[]);
 }
 exports.iosListAlias=function(success,error){
-	exec(success,error,"PushIOS","listAlias",null);
+	exec(success,error,"PushIOS","listAlias",[]);
 }
 exports.iosRemoveAlias=function(success,error){
-	exec(success,error,"PushIOS","removeAlias",null);
+	exec(success,error,"PushIOS","removeAlias",[]);
 }
 exports.iosOnMessageRes=function(success,error){
-	exec(success,error,"PushIOS","onMessageRes",null);
+	exec(success,error,"PushIOS","onMessageRes",[]);
 }
 exports.iosOnNotificationClick=function(success,error){
-	exec(success,error,"PushIOS","onNotificationClick",null);
+	exec(success,error,"PushIOS","onNotificationClick",[]);
 }
 
 //android
@@ -53,16 +53,16 @@ exports.androidUnbindTagsandAlias=function(success,error,args){
 }
 
 exports.androidGetDeviceId=function(success,error){
-	exec(success,error,"Push","getDeviceId",null);
+	exec(success,error,"Push","getDeviceId",[]);
 }
 exports.androidListTags=function(success,error){
-	exec(success,error,"Push","listTags",null);
+	exec(success,error,"Push","listTags",[]);
 }
 exports.androidListAlias=function(success,error){
-	exec(success,error,"Push","listAlias",null);
+	exec(success,error,"Push","listAlias",[]);
 }
 exports.androidRemoveAlias=function(success,error){
-	exec(success,error,"Push","removeAlias",null);
+	exec(success,error,"Push","removeAlias",[]);
 }
 exports.androidSetNotificationSoundFilePath=function(success,error,args){
 	exec(success,error,"Push","setNotificationSoundFilePath",args);
@@ -77,20 +77,20 @@ exports.androidSetDoNotDisturb=function(success,error,args){
 	exec(success,error,"Push","setDoNotDisturb",args);
 }
 exports.androidSetCloseDoNotturbMode=function(success,error){
-	exec(success,error,"Push","setCloseDoNotturbMode",null);
+	exec(success,error,"Push","setCloseDoNotturbMode",[]);
 }
 exports.androidSetClearNotifications=function(success,error){
-	exec(success,error,"Push","setCleraNotifications",null);
+	exec(success,error,"Push","setCleraNotifications",[]);
 }
 exports.androidBindPhoneNumber=function(success,error,args){
 	exec(success,error,"Push","bindPhoneNumber",args);
 }
 exports.androidUnBindPhoneNum=function(success,error){
-	exec(success,error,"Push","unBindPhoneNum",null);
+	exec(success,error,"Push","unBindPhoneNum",[]);
 }
 exports.androidOnMessageRes=function(success,error){
-	exec(success,error,"Push","onMessageRes",null);
+	exec(success,error,"Push","onMessageRes",[]);
 }
 exports.androidOnNotifyClick=function(success,error){
-	exec(success,error,"Push","onNotifyClick",null);
+	exec(success,error,"Push","onNotifyClick",[]);
 }
