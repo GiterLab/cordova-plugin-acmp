@@ -3,6 +3,9 @@ aliyun acmp for cordova<br>
 如果你发现有bug,fork之后提交就行了<br>
 钉钉：wxj109
 
+已经上传npm 可直接安装<br>
+cordova plugin add cordova-plugin-acmp --nofetch --force --variable ANDROID_APP_KEY=*** --variable ANDROID_APP_SECRET=*** --variable IOS_APP_KEY=*** --variable IOS_APP_SECRET=***
+
 
 ## 本插件的作用
 ### cordova-plugin-acmp的主要作用是为了把阿里云移动推送集成到cordova开发中去
