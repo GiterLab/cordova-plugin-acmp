@@ -1,7 +1,11 @@
+
+
 # cordova-plugin-acmp
 aliyun acmp for cordova<br>
 如果你发现有bug,fork之后提交就行了<br>
 钉钉：wxj109
+
+## 本产品适用于Cordova7版本，Cordova8.0及以上暂时不兼容，不建议采用Cordova直接安装的方式（framework在传输过程中可能损坏），可以clone到本地安装
 
 已经上传npm 可直接安装<br>
 cordova plugin add cordova-plugin-acmp --nofetch --force --variable ANDROID_APP_KEY=*** --variable ANDROID_APP_SECRET=*** --variable IOS_APP_KEY=*** --variable IOS_APP_SECRET=***
